@@ -17,7 +17,7 @@ const renderEditForm = todo => {
 const link = `http://localhost:8000/todos/${getIDFromUrl()}`;
 getData(link).then(data => renderEditForm(data));
 
-const saveToDo = () => {
+const saveToDo = async () => {
     const editedToDo = {
         "id": editForm.elements.id.value,
         "title": editForm.elements.title.value,
@@ -27,7 +27,10 @@ const saveToDo = () => {
         "priority": editForm.elements.priority.value,
         "label": editForm.elements.label.value
     };
-    saveData(link,editedToDo).then(window.location.href = '/index.html');
+    const response = await saveData(link, editedToDo);
+    if (response.ok) {
+        window.location.href = '/index.html';
+    }
 }
 
 const validate = () => {

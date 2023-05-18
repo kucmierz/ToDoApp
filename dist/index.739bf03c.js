@@ -558,6 +558,7 @@ function hmrAccept(bundle, id) {
 
 },{}],"ebWYT":[function(require,module,exports) {
 var _connection = require("./shared/connection");
+var _helpers = require("./shared/helpers");
 const todoList = document.querySelector("#todos");
 const renderToDo = (collection)=>{
     todoList.innerHTML = "";
@@ -568,6 +569,7 @@ const renderToDo = (collection)=>{
             <p>Termin: ${todo.due_date}</p>
             <p>Priorytet: ${todo.priority}</p>
             <p>Completed: ${todo.completed}</p>
+            <a href="/add.html">Add</a>
             <a href="/edit.html?id=${todo.id}">Edit</a>
             <a href="/detail.html?id=${todo.id}">Details</a>
             <a href="/delete.html?id=${todo.id}">Delete</a>
@@ -575,13 +577,16 @@ const renderToDo = (collection)=>{
         `;
     });
 };
-(0, _connection.getData)("http://localhost:8000/todos").then((data)=>renderToDo(data));
+const link = (0, _helpers.generateTodoLink)() //'http://localhost:8000/todos';
+;
+(0, _connection.getData)(link).then((data)=>renderToDo(data));
 
-},{"./shared/connection":"dfuiv"}],"dfuiv":[function(require,module,exports) {
+},{"./shared/connection":"dfuiv","./shared/helpers":"9G7TO"}],"dfuiv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getData", ()=>getData);
 parcelHelpers.export(exports, "saveData", ()=>saveData);
+parcelHelpers.export(exports, "addData", ()=>addData);
 const getData = async (link)=>{
     const response = await fetch(link);
     return await response.json();
@@ -589,6 +594,16 @@ const getData = async (link)=>{
 const saveData = async (link, data)=>{
     const response = await fetch(link, {
         method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    return await response;
+};
+const addData = async (link, data)=>{
+    const response = await fetch(link, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
@@ -627,6 +642,21 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["gHDMI","ebWYT"], "ebWYT", "parcelRequire66d6")
+},{}],"9G7TO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getIDFromUrl", ()=>getIDFromUrl);
+parcelHelpers.export(exports, "generateTodoLink", ()=>generateTodoLink);
+const getIDFromUrl = ()=>{
+    const url = window.location.search;
+    const params = new URLSearchParams(url);
+    return params.get("id");
+};
+const generateTodoLink = (todoId = "")=>{
+    const baseUrl = "http://localhost:8000/todos";
+    return todoId ? `${baseUrl}/${todoId}` : baseUrl;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gHDMI","ebWYT"], "ebWYT", "parcelRequire66d6")
 
 //# sourceMappingURL=index.739bf03c.js.map

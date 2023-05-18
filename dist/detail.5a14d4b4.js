@@ -582,10 +582,15 @@ const link = `http://localhost:8000/todos/${(0, _helpers.getIDFromUrl)()}`;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getIDFromUrl", ()=>getIDFromUrl);
+parcelHelpers.export(exports, "generateTodoLink", ()=>generateTodoLink);
 const getIDFromUrl = ()=>{
     const url = window.location.search;
     const params = new URLSearchParams(url);
     return params.get("id");
+};
+const generateTodoLink = (todoId = "")=>{
+    const baseUrl = "http://localhost:8000/todos";
+    return todoId ? `${baseUrl}/${todoId}` : baseUrl;
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -623,6 +628,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getData", ()=>getData);
 parcelHelpers.export(exports, "saveData", ()=>saveData);
+parcelHelpers.export(exports, "addData", ()=>addData);
 const getData = async (link)=>{
     const response = await fetch(link);
     return await response.json();
@@ -630,6 +636,16 @@ const getData = async (link)=>{
 const saveData = async (link, data)=>{
     const response = await fetch(link, {
         method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    return await response;
+};
+const addData = async (link, data)=>{
+    const response = await fetch(link, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },

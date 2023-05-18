@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"a3yxP":[function(require,module,exports) {
+})({"3yHQn":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "89b975a8e9d830c4";
+module.bundle.HMR_BUNDLE_ID = "c2fd3e0370a0a01c";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,61 +556,66 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"hPCZF":[function(require,module,exports) {
-var _helpers = require("./shared/helpers");
+},{}],"eoI2d":[function(require,module,exports) {
 var _connection = require("./shared/connection");
-const editForm = document.querySelector("#edit-form");
+var _helpers = require("./shared/helpers");
+const addTaskForm = document.querySelector("#add-new-task-form");
 const titleError = document.querySelector("#title-error");
-const renderEditForm = (todo)=>{
-    editForm.elements.id.value = todo.id;
-    editForm.elements.title.value = todo.title;
-    editForm.elements.description.value = todo.description;
-    editForm.elements.due_date.value = todo.due_date;
-    editForm.elements.completed.checked = todo.completed;
-    editForm.elements.priority.value = todo.priority;
-    editForm.elements.label.value = todo.label;
-};
-const link = `http://localhost:8000/todos/${(0, _helpers.getIDFromUrl)()}`;
-(0, _connection.getData)(link).then((data)=>renderEditForm(data));
-const saveToDo = async ()=>{
-    const editedToDo = {
-        "id": editForm.elements.id.value,
-        "title": editForm.elements.title.value,
-        "description": editForm.elements.description.value,
-        "due_date": editForm.elements.due_date.value,
-        "completed": editForm.elements.completed.checked,
-        "priority": editForm.elements.priority.value,
-        "label": editForm.elements.label.value
-    };
-    const response = await (0, _connection.saveData)(link, editedToDo);
-    if (response.ok) window.location.href = "/index.html";
-};
 const validate = ()=>{
-    if (editForm.elements.title.value === "") {
+    if (addTaskForm.elements.title.value === "") {
         titleError.classList.toggle("title-error-show");
         titleError.classList.toggle("title-error");
         return false;
     } else return true;
 };
+const addNewTask = async ()=>{
+    const newTask = {
+        "title": addTaskForm.elements.title.value,
+        "description": addTaskForm.elements.description.value,
+        "due_date": addTaskForm.elements.due_date.value,
+        "completed": addTaskForm.elements.completed.checked,
+        "priority": addTaskForm.elements.priority.value,
+        "label": addTaskForm.elements.label.value
+    };
+    const link = (0, _helpers.generateTodoLink)();
+    const response = await (0, _connection.addData)(link, newTask);
+    if (response.ok) window.location.href = "/index.html";
+};
 const handleSubmit = (ev)=>{
     ev.preventDefault();
-    if (validate()) saveToDo();
+    if (validate()) addNewTask();
 };
-editForm.addEventListener("submit", handleSubmit);
+addTaskForm.addEventListener("submit", handleSubmit);
 
-},{"./shared/helpers":"9G7TO","./shared/connection":"dfuiv"}],"9G7TO":[function(require,module,exports) {
+},{"./shared/connection":"dfuiv","./shared/helpers":"9G7TO"}],"dfuiv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getIDFromUrl", ()=>getIDFromUrl);
-parcelHelpers.export(exports, "generateTodoLink", ()=>generateTodoLink);
-const getIDFromUrl = ()=>{
-    const url = window.location.search;
-    const params = new URLSearchParams(url);
-    return params.get("id");
+parcelHelpers.export(exports, "getData", ()=>getData);
+parcelHelpers.export(exports, "saveData", ()=>saveData);
+parcelHelpers.export(exports, "addData", ()=>addData);
+const getData = async (link)=>{
+    const response = await fetch(link);
+    return await response.json();
 };
-const generateTodoLink = (todoId = "")=>{
-    const baseUrl = "http://localhost:8000/todos";
-    return todoId ? `${baseUrl}/${todoId}` : baseUrl;
+const saveData = async (link, data)=>{
+    const response = await fetch(link, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    return await response;
+};
+const addData = async (link, data)=>{
+    const response = await fetch(link, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    return await response;
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -643,37 +648,21 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"dfuiv":[function(require,module,exports) {
+},{}],"9G7TO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getData", ()=>getData);
-parcelHelpers.export(exports, "saveData", ()=>saveData);
-parcelHelpers.export(exports, "addData", ()=>addData);
-const getData = async (link)=>{
-    const response = await fetch(link);
-    return await response.json();
+parcelHelpers.export(exports, "getIDFromUrl", ()=>getIDFromUrl);
+parcelHelpers.export(exports, "generateTodoLink", ()=>generateTodoLink);
+const getIDFromUrl = ()=>{
+    const url = window.location.search;
+    const params = new URLSearchParams(url);
+    return params.get("id");
 };
-const saveData = async (link, data)=>{
-    const response = await fetch(link, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
-    return await response;
-};
-const addData = async (link, data)=>{
-    const response = await fetch(link, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
-    return await response;
+const generateTodoLink = (todoId = "")=>{
+    const baseUrl = "http://localhost:8000/todos";
+    return todoId ? `${baseUrl}/${todoId}` : baseUrl;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["a3yxP","hPCZF"], "hPCZF", "parcelRequire66d6")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["3yHQn","eoI2d"], "eoI2d", "parcelRequire66d6")
 
-//# sourceMappingURL=edit.e9d830c4.js.map
+//# sourceMappingURL=add.70a0a01c.js.map

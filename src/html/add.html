@@ -5,14 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
-    <link rel="stylesheet" href="../css/edit.css">
+    <title>Add new task</title>
+    <link rel="stylesheet" href="../css/add.css">
 </head>
 
 <body>
-    <form id="edit-form">
-        <label>ID
-            <input type="text" name="id" readonly></label>
+    <form id="add-new-task-form">
         <label>Title <span id="title-error" class="title-error">Title can not be blank</span>
             <input type="text" name="title"></label>
         <label>Description
@@ -25,11 +23,10 @@
             <input type="text" name="priority"></label>
         <label>Label
             <input type="text" name="label"></label>
-        <button type="submit">Save</button>
+        <button type="submit">Add</button>
     </form>
-
     <a href="/index">Main page</a>
-    <script src="../js/edit.js" type="module"></script>
+    <script src="../js/add.js" type="module"></script>
 </body>
 
 </html>

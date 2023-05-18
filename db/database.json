@@ -4,10 +4,37 @@
       "id": 1,
       "title": "Przygotować prezentację",
       "description": "Przygotować slajdy i notatki",
-      "due_date": "2023-05-19",
+      "due_date": "2023-05-23",
       "completed": false,
       "priority": "high",
       "label": "Projekt"
+    },
+    {
+      "title": "zadanie 2",
+      "description": "",
+      "due_date": "2023-05-26",
+      "completed": false,
+      "priority": "",
+      "label": "",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "title": "zadanie 3",
+      "description": "",
+      "due_date": "2023-06-09",
+      "completed": false,
+      "priority": "",
+      "label": ""
+    },
+    {
+      "title": "zadanie 4",
+      "description": "",
+      "due_date": "2023-05-25",
+      "completed": false,
+      "priority": "",
+      "label": "",
+      "id": 4
     }
   ]
 }

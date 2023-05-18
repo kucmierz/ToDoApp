@@ -1,4 +1,5 @@
 import { getData } from "./shared/connection";
+import { generateTodoLink } from "./shared/helpers";
 
 const todoList = document.querySelector('#todos');
 
@@ -11,6 +12,7 @@ const renderToDo = collection => {
             <p>Termin: ${todo.due_date}</p>
             <p>Priorytet: ${todo.priority}</p>
             <p>Completed: ${todo.completed}</p>
+            <a href="/add.html">Add</a>
             <a href="/edit.html?id=${todo.id}">Edit</a>
             <a href="/detail.html?id=${todo.id}">Details</a>
             <a href="/delete.html?id=${todo.id}">Delete</a>
@@ -19,6 +21,6 @@ const renderToDo = collection => {
     });
 }
 
-
-getData('http://localhost:8000/todos').then(data => renderToDo(data));
+const link = generateTodoLink() //'http://localhost:8000/todos';
+getData(link).then(data => renderToDo(data));
 
