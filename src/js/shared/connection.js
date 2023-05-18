@@ -9,7 +9,7 @@ export const saveData = async (link, data) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    return await response;
+    return response;
 }
 
 export const addData = async (link, data) => {
@@ -18,5 +18,13 @@ export const addData = async (link, data) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    return await response;
+    return response;
+}
+
+export const deleteData = async (link) => {
+    const response = await fetch(link, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    });
+    return response;
 }

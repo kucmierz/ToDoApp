@@ -1,0 +1,45 @@
+/* index.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#todos {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+a:hover {
+    background-color: #ddd;
+}

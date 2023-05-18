@@ -21,6 +21,6 @@ const renderToDo = collection => {
     });
 }
 
-const link = generateTodoLink() //'http://localhost:8000/todos';
+const link = generateTodoLink();
 getData(link).then(data => renderToDo(data));
 

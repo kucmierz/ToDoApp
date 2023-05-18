@@ -629,6 +629,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getData", ()=>getData);
 parcelHelpers.export(exports, "saveData", ()=>saveData);
 parcelHelpers.export(exports, "addData", ()=>addData);
+parcelHelpers.export(exports, "deleteData", ()=>deleteData);
 const getData = async (link)=>{
     const response = await fetch(link);
     return await response.json();
@@ -641,7 +642,7 @@ const saveData = async (link, data)=>{
         },
         body: JSON.stringify(data)
     });
-    return await response;
+    return response;
 };
 const addData = async (link, data)=>{
     const response = await fetch(link, {
@@ -651,7 +652,16 @@ const addData = async (link, data)=>{
         },
         body: JSON.stringify(data)
     });
-    return await response;
+    return response;
+};
+const deleteData = async (link)=>{
+    const response = await fetch(link, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    return response;
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["e2lvs","Tm9d6"], "Tm9d6", "parcelRequire66d6")

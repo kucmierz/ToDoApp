@@ -10,31 +10,13 @@
       "label": "Projekt"
     },
     {
+      "id": 2,
       "title": "zadanie 2",
-      "description": "",
+      "description": "Brak opisu",
       "due_date": "2023-05-26",
-      "completed": false,
-      "priority": "",
-      "label": "",
-      "id": 2
-    },
-    {
-      "id": 3,
-      "title": "zadanie 3",
-      "description": "",
-      "due_date": "2023-06-09",
-      "completed": false,
+      "completed": true,
       "priority": "",
       "label": ""
-    },
-    {
-      "title": "zadanie 4",
-      "description": "",
-      "due_date": "2023-05-25",
-      "completed": false,
-      "priority": "",
-      "label": "",
-      "id": 4
     }
   ]
 }
