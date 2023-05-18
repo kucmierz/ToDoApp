@@ -1,14 +1,13 @@
 {
-    "todos":[
-        {
-            "id": 1,
-            "title": "Przygotować prezentację",
-            "description": "Przygotować slajdy i notatki",
-            "due_date": "2023-05-18",
-            "completed": false,
-            "priority": "high",
-            "label": "Projekt"
-          }
-          
-    ]
+  "todos": [
+    {
+      "id": 1,
+      "title": "Przygotować prezentację",
+      "description": "Przygotować slajdy i notatki",
+      "due_date": "2023-05-19",
+      "completed": false,
+      "priority": "high",
+      "label": "Projekt"
+    }
+  ]
 }

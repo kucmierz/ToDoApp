@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"e2lvs":[function(require,module,exports) {
+})({"a3yxP":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "1b3bf5825a14d4b4";
+module.bundle.HMR_BUNDLE_ID = "89b975a8e9d830c4";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,27 +556,46 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"Tm9d6":[function(require,module,exports) {
+},{}],"hPCZF":[function(require,module,exports) {
 var _helpers = require("./shared/helpers");
 var _connection = require("./shared/connection");
-const todoDetail = document.querySelector("#todo-detail");
-const renderToDo = (todo)=>{
-    todoDetail.innerHTML = `
-    <li>
-        <h3>${todo.title}</h3>
-        <p>${todo.description}</p>
-        <p>Due date: ${todo.due_date}</p>
-        <p>Completed: ${todo.completed}</p>
-        <p>Priority: ${todo.priority}</p>
-        <p>Label: ${todo.label}</p>
-        <a href="/edit.html?${todo.id}">Edit</a>
-        <a href="/index.html">Main page</a>
-        <a href="/delete.html?${todo.id}">Delete</a>
-    </li>    
-    `;
+const editForm = document.querySelector("#edit-form");
+const titleError = document.querySelector("#title-error");
+const renderEditForm = (todo)=>{
+    editForm.elements.id.value = todo.id;
+    editForm.elements.title.value = todo.title;
+    editForm.elements.description.value = todo.description;
+    editForm.elements.due_date.value = todo.due_date;
+    editForm.elements.completed.checked = todo.completed;
+    editForm.elements.priority.value = todo.priority;
+    editForm.elements.label.value = todo.label;
 };
 const link = `http://localhost:8000/todos/${(0, _helpers.getIDFromUrl)()}`;
-(0, _connection.getData)(link).then((data)=>renderToDo(data));
+(0, _connection.getData)(link).then((data)=>renderEditForm(data));
+const saveToDo = ()=>{
+    const editedToDo = {
+        "id": editForm.elements.id.value,
+        "title": editForm.elements.title.value,
+        "description": editForm.elements.description.value,
+        "due_date": editForm.elements.due_date.value,
+        "completed": editForm.elements.completed.checked,
+        "priority": editForm.elements.priority.value,
+        "label": editForm.elements.label.value
+    };
+    (0, _connection.saveData)(link, editedToDo).then(window.location.href = "/index.html");
+};
+const validate = ()=>{
+    if (editForm.elements.title.value === "") {
+        titleError.classList.toggle("title-error-show");
+        titleError.classList.toggle("title-error");
+        return false;
+    } else return true;
+};
+const handleSubmit = (ev)=>{
+    ev.preventDefault();
+    if (validate()) saveToDo();
+};
+editForm.addEventListener("submit", handleSubmit);
 
 },{"./shared/helpers":"9G7TO","./shared/connection":"dfuiv"}],"9G7TO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -638,6 +657,6 @@ const saveData = async (link, data)=>{
     return await response;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["e2lvs","Tm9d6"], "Tm9d6", "parcelRequire66d6")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["a3yxP","hPCZF"], "hPCZF", "parcelRequire66d6")
 
-//# sourceMappingURL=detail.5a14d4b4.js.map
+//# sourceMappingURL=edit.e9d830c4.js.map

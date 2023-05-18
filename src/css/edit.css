@@ -1,0 +1,9 @@
+.title-error {
+    display: none;
+}
+
+.title-error-show {
+    display: inline;
+    color: #ff0000;
+    font-weight: bold;
+}

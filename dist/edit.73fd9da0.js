@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"e2lvs":[function(require,module,exports) {
+})({"fHL31":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "1b3bf5825a14d4b4";
+module.bundle.HMR_BUNDLE_ID = "4d394ca373fd9da0";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,88 +556,8 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"Tm9d6":[function(require,module,exports) {
-var _helpers = require("./shared/helpers");
-var _connection = require("./shared/connection");
-const todoDetail = document.querySelector("#todo-detail");
-const renderToDo = (todo)=>{
-    todoDetail.innerHTML = `
-    <li>
-        <h3>${todo.title}</h3>
-        <p>${todo.description}</p>
-        <p>Due date: ${todo.due_date}</p>
-        <p>Completed: ${todo.completed}</p>
-        <p>Priority: ${todo.priority}</p>
-        <p>Label: ${todo.label}</p>
-        <a href="/edit.html?${todo.id}">Edit</a>
-        <a href="/index.html">Main page</a>
-        <a href="/delete.html?${todo.id}">Delete</a>
-    </li>    
-    `;
-};
-const link = `http://localhost:8000/todos/${(0, _helpers.getIDFromUrl)()}`;
-(0, _connection.getData)(link).then((data)=>renderToDo(data));
+},{}],"lFrYx":[function(require,module,exports) {
 
-},{"./shared/helpers":"9G7TO","./shared/connection":"dfuiv"}],"9G7TO":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getIDFromUrl", ()=>getIDFromUrl);
-const getIDFromUrl = ()=>{
-    const url = window.location.search;
-    const params = new URLSearchParams(url);
-    return params.get("id");
-};
+},{}]},["fHL31","lFrYx"], "lFrYx", "parcelRequire66d6")
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"dfuiv":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getData", ()=>getData);
-parcelHelpers.export(exports, "saveData", ()=>saveData);
-const getData = async (link)=>{
-    const response = await fetch(link);
-    return await response.json();
-};
-const saveData = async (link, data)=>{
-    const response = await fetch(link, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
-    return await response;
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["e2lvs","Tm9d6"], "Tm9d6", "parcelRequire66d6")
-
-//# sourceMappingURL=detail.5a14d4b4.js.map
+//# sourceMappingURL=edit.73fd9da0.js.map

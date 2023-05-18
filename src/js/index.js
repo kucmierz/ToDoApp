@@ -10,9 +10,10 @@ const renderToDo = collection => {
             <h3>${todo.title}</h3>
             <p>Termin: ${todo.due_date}</p>
             <p>Priorytet: ${todo.priority}</p>
-            <a href="/edit/2">Edit</a>
+            <p>Completed: ${todo.completed}</p>
+            <a href="/edit.html?id=${todo.id}">Edit</a>
             <a href="/detail.html?id=${todo.id}">Details</a>
-            <a href="/delete/2">Delete</a>
+            <a href="/delete.html?id=${todo.id}">Delete</a>
         </li>        
         `;
     });
